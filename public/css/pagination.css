@@ -1,0 +1,34 @@
+/*colors*/
+.pagination {
+  list-style-type: none;
+  display: table;
+  margin: 0 auto 15px;
+  /*end li*/
+}
+.pagination:after {
+  content: '';
+  display: block;
+  clear: both;
+}
+.pagination li {
+  float: left;
+  width: 42px;
+  height: 42px;
+  text-align: center;
+  border: 1px solid #E3E3E3;
+  line-height: 42px;
+  margin-left: -1px;
+}
+.pagination li a {
+  text-decoration: none;
+  width: 42px;
+  height: 42px;
+  display: inline-block;
+}
+.pagination li.active {
+  background-color: #eee;
+}
+.pagination li:hover:not(.active) {
+  background-color: #f3f3f3;
+}
+/*end pagination*/

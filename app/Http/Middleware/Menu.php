@@ -1,0 +1,43 @@
+<?php
+
+namespace App\Http\Middleware;
+
+use Closure;
+use Illuminate\Support\Facades\Artisan;
+use Illuminate\Support\Facades\Blade;
+use Illuminate\Support\Facades\View;
+
+class Menu
+{
+    public function handle($request, Closure $next)
+    {
+        $items = [
+            [
+                "label" => "Главная",
+                "url" => route("homepage"),
+            ],
+            [
+                "label" => "Книги",
+                "url" => route("book.index"),
+
+            ],
+            [
+                "label" => "Создать книгу",
+                "url" => route("book.create"),
+            ],
+        ];
+
+        foreach ($items as &$item) {
+            if ($item["url"] == url()->current()) {
+                $item["isCurrent"] = true;
+                $item["class"] = "btn btn_link active";
+            } else {
+                $item["class"] = "btn btn_link";
+            }
+        }
+
+        View::share("menu" , $items);
+
+        return $next($request);
+    }
+}

@@ -1,0 +1,72 @@
+@import "variables";
+
+.btn {
+  border: 1px solid #E3E3E3;
+  border-radius: 4px;
+  padding: 8px 8px;
+  text-decoration: none;
+  display: inline-block;
+  background-color: #fff;
+  line-height: 18px;
+  vertical-align: top;
+  outline: 0;
+  cursor: pointer;
+
+  &:hover {
+    background-color: @color-gray;
+  }
+}
+
+.btn_dark {
+
+}
+
+.btn_primary {
+  .btn_mod(@color-primary);
+}
+
+.btn_danger {
+  .btn_mod(@color-danger);
+}
+
+.btn_success {
+  .btn_mod(@color-success);
+}
+
+.btn_warning {
+  .btn_mod(@color-warning);
+}
+
+.btn_mod(@bg-color, @color: @color-white) {
+  background-color: @bg-color;
+  border: 1px solid lighten(@bg-color, 10%);
+  color: @color;
+
+  &:hover {
+    background-color: lighten(@bg-color, 5%);
+  }
+}
+
+.btn_radius-less {
+  border-radius: 0;
+}
+
+.btn_link {
+  -webkit-border-radius: 0;
+  -moz-border-radius: 0;
+  border-radius: 0;
+  border: none;
+
+  a {
+    color: inherit !important;
+  }
+
+  &:hover {
+    background-color: lighten(@color-gray, 2%);
+  }
+
+  &.active {
+    background-color: @color-gray;
+  }
+}
+

@@ -55,6 +55,7 @@ class RegisterController extends Controller
     }
 
     /**
+     * TODO: Добавить регистрацию через вк.
      * Create a new user instance after a valid registration.
      *
      * @param  array  $data

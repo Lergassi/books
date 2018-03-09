@@ -11,6 +11,25 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
+$middleware = [];
+$middleware["middleware"] = ["web"];
+
+if (Config::get('app.debug')) {
+    $middleware["middleware"][] = "clearcache";
+}
+
+Route::group($middleware, function () {
+    Route::get("/", "SiteController@homepage")->name("homepage");
+    Route::get("/test", "SiteController@test");
+
+//    Route::get("/admin", "admin\\SiteController@homepage");
+    Route::resource("book", "BookController");
 });
+
+//Auth::routes();
+
+Route::get('/login', 'Auth\LoginController@showLoginForm')->name('login');
+Route::post('/login', 'Auth\LoginController@login');
+Route::post('/logout', 'Auth\LoginController@logout')->name('logout');
+
+Route::get('/home', 'HomeController@index')->name('home');

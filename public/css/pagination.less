@@ -1,0 +1,36 @@
+@import "variables";
+
+@pagination-width: 42px;
+
+.pagination {
+  list-style-type: none;
+  display: table;
+  margin: 0 auto @main-margin-bottom;
+
+  .clearfix-after();
+
+  li {
+    float: left;
+    width: @pagination-width;
+    height: @pagination-width;
+    text-align: center;
+    border: 1px solid @main-border-color;
+    line-height: @pagination-width;
+    margin-left: -1px;
+
+    a {
+      text-decoration: none;
+      width: @pagination-width;
+      height: @pagination-width;
+      display: inline-block;
+    }
+  }/*end li*/
+
+  li.active {
+    background-color: @color-gray;
+  }
+
+  li:hover:not(.active) {
+    background-color: lighten(@color-gray, 2%);
+  }
+}/*end pagination*/
