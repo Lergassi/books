@@ -21,12 +21,6 @@
 
         @include("layouts.menu", ["items" => $menu])
 
-        @if(Auth::user()->name == "admin")
-            <div class="block-simple">
-                admin section
-            </div>
-        @endif
-
         @yield("content")
     </div>
     <div class="footer">

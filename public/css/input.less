@@ -1,0 +1,44 @@
+@import "variables";
+
+@input-label-width: 30%;
+@input-width: 100% - @input-label-width;
+
+.input-group {
+  display: table;
+  width: 100%;
+
+  .label,
+  .input,
+  .select {
+    display: table-cell;
+  }
+
+  .label {
+    width: @input-label-width;
+    display: inline-block;
+    margin-bottom: @main-margin-bottom;
+    box-sizing: border-box;
+  }
+}
+
+.input[type="text"] {
+  width: @input-width;
+  border-radius: 4px;
+  outline: none;
+  border: 1px solid @main-border-color;
+  padding: 6px 8px;
+  box-sizing: border-box;
+
+}
+
+.select {
+  .input-mix;
+}
+
+.input-mix() {
+  width: @input-width;
+  border-radius: 4px;
+  outline: none;
+  border: 1px solid @main-border-color;
+  padding: 6px 8px;
+}

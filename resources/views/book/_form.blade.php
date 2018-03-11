@@ -22,12 +22,12 @@
                     <input type="hidden" name="book[id]" value="{{\App\Helper::hasOldAttribute($book, "id")}}">
                 @endif
                 <div class="input-group">
-                    <label for="">Название</label>
-                    <input type="text" name="book[title]" value="{{\App\Helper::hasOldAttribute($book, "book.title")}}">
+                    <label for="" class="label">Название</label>
+                    {!! \App\Html::input("book[title]", \App\Helper::hasOldAttribute($book, "book.title"), ["class" => "input"]) !!}
                 </div>
                 <div class="input-group">
-                    <label for="">Описание</label>
-                    <input type="text" name="book[description]" value="{{\App\Helper::hasOldAttribute($book, "book.description")}}">
+                    <label for="" class="label">Описание</label>
+                    {!! \App\Html::input("book[description]", \App\Helper::hasOldAttribute($book, "book.description"), ["class" => "input"]) !!}
                 </div>
             </div>
             <div class="block-simple">

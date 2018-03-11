@@ -2,16 +2,15 @@
 
 namespace App;
 
-use Illuminate\Database\Eloquent\Model;
-
 /**
  * @property int $id
  * @property string $title
  * @property int $created_at
  * @property int $updated_at
  * @property string $description
+ * @property bool $status
  */
-class Book extends Model
+class Book extends BaseModel
 {
     protected $table = "books";
 

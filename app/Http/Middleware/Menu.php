@@ -25,6 +25,14 @@ class Menu
                 "label" => "Создать книгу",
                 "url" => route("book.create"),
             ],
+            [
+                "label" => "Узлы",
+                "url" => route("node.index"),
+            ],
+            [
+                "label" => "Создать узел",
+                "url" => route("node.create"),
+            ],
         ];
 
         foreach ($items as &$item) {
