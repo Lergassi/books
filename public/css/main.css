@@ -64,6 +64,7 @@
   -moz-border-radius: 0;
   border-radius: 0;
   border: none;
+  padding: 0;
 }
 .btn_link a {
   color: inherit !important;
@@ -213,6 +214,8 @@ a:hover {
 }
 .top-menu li a {
   text-decoration: none;
+  padding: 8px 8px;
+  display: inline-block;
 }
 /*helper*/
 .inline-block {

@@ -54,6 +54,7 @@
   -moz-border-radius: 0;
   border-radius: 0;
   border: none;
+  padding: 0;
 }
 .btn_link a {
   color: inherit !important;
