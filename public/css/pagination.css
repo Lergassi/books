@@ -1,8 +1,11 @@
 /*colors*/
+.pagination-wrapper {
+  margin-bottom: 15px;
+}
 .pagination {
   list-style-type: none;
   display: table;
-  margin: 0 auto 15px;
+  margin: 0 auto;
   /*end li*/
 }
 .pagination:after {

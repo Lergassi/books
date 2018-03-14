@@ -15,21 +15,24 @@
 </head>
 <body>
     <div class="wrapper">
-        <div class="title-site">
-            <a href="/">Заголовок сайта</a>
+        <div class="content">
+            <div class="title-site">
+                <a href="/">Заголовок сайта</a>
+            </div>
+
+            @include("layouts.menu", ["items" => $menu])
+
+            @yield("content")
         </div>
 
-        @include("layouts.menu", ["items" => $menu])
-
-        @yield("content")
-    </div>
-    <div class="footer">
-        <div class="footer__link">
-            <a href="#">ВКонтакте</a>
-            <a href="#">О сайте</a>
-        </div>
-        <div class="footer__title">
-            &copy; 2018
+        <div class="footer">
+            <div class="footer__link">
+                <a href="#">ВКонтакте</a>
+                <a href="#">О сайте</a>
+            </div>
+            <div class="footer__title">
+                &copy; 2018
+            </div>
         </div>
     </div>
 </body>
