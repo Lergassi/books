@@ -11,6 +11,7 @@ class Menu
 {
     public function handle($request, Closure $next)
     {
+        //TODO: перенести меню в настройки.
         $items = [
             [
                 "label" => "Главная",
@@ -29,10 +30,19 @@ class Menu
                 "label" => "Узлы",
                 "url" => route("node.index"),
             ],
+//            [
+//                "label" => "Создать узел",
+//                "url" => route("node.create"),
+//            ],
+            //TODO: временно
             [
-                "label" => "Создать узел",
-                "url" => route("node.create"),
+                "label" => "Ответы",
+                "url" => route("nodeItem.index"),
             ],
+//            [
+//                "label" => "Создать ответ",
+//                "url" => route("nodeItem.create"),
+//            ],
         ];
 
         foreach ($items as &$item) {

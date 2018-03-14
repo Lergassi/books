@@ -27,4 +27,14 @@ class Book extends BaseModel
 
         return $book;
     }
+
+    public function nodes()
+    {
+        return $this->hasMany('App\Node');
+    }
+
+    public function nodeItems()
+    {
+        return $this->hasManyThrough('App\NodeItem', 'App\Node');
+    }
 }

@@ -25,6 +25,7 @@ Route::group($middleware, function () {
 //    Route::get("/admin", "admin\\SiteController@homepage");
     Route::resource("book", "BookController");
     Route::resource("node", "NodeController");
+    Route::resource("nodeItem", "NodeItemController");
 });
 
 //Auth::routes();

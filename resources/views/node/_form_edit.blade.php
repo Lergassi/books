@@ -23,12 +23,6 @@
 
                 <div class="block-simple__line"></div>
 
-                <div class="input-group">
-                    <label for="" class="label">Предыдущий ответ</label>
-                    {!! \App\Html::select("node[prev_item_id]", \App\NodeItem::createItems($nodeItemsCollection, "text"), $nodeItem->id, ["class" => "select", "disabled" => true]) !!}
-                    {!! \App\Html::hidden("node[prev_item_id]", $nodeItem->id) !!}
-                </div>
-
             </div>
             <div class="block-simple">
                 @yield("buttons")

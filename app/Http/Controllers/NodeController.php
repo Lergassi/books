@@ -35,6 +35,7 @@ class NodeController extends Controller
                 "title",
                 "created_at",
                 "text",
+                "book_id",
             ]
         ]);
     }
@@ -42,14 +43,30 @@ class NodeController extends Controller
     /**
      * Show the form for creating a new resource.
      *
+     * @param Request $request
      * @return \Illuminate\Http\Response
+     * @throws \Exception
      */
-    public function create()
+    public function create(Request $request)
     {
         $node = new Node();
+        $nodeItem = new NodeItem();
+
+        if ($book_id = $request->get("book_id")) {
+            $node->book_id = $book_id;
+        } elseif ($nodeItemId = $request->get("nodeItem_id")) {
+            $nodeItem = NodeItem::find($nodeItemId);
+            $node->book_id = $nodeItem->node->book_id;
+        } else {
+            throw new \Exception("Для создания узла нужно указать book_id или nodeItem_id. Доступно со страниц просмотра модели.");
+        }
+
+        $nodeItemsCollection = NodeItem::all();
 
         return view("node/create", [
             "node" => $node,
+            "nodeItemsCollection" => $nodeItemsCollection,
+            "nodeItem" => $nodeItem,
         ]);
     }
 
@@ -64,7 +81,15 @@ class NodeController extends Controller
         $validatedData = $this->createValidator($request);
 
         if ($validatedData->fails()) {
-            return redirect()->route("node.create")
+            //TODO: Временное решение. Сделать интерфейс для создания новых узлов и узлов связанных с ответами.
+            $params = [];
+            if ($request->input("node.prev_item_id")) {
+                $params["nodeItem_id"] = $request->input("node.prev_item_id");
+            } elseif ($request->input("node.book_id")) {
+                $params["book_id"] = $request->input("node.book_id");
+            }
+
+            return redirect()->route("node.create", $params)
                 ->withErrors($validatedData)
                 ->withInput($request->input());
         }
@@ -73,6 +98,11 @@ class NodeController extends Controller
         $node->fill($request->get("node"));
 
         if ($node->save()) {
+            if ($request->input("node.prev_item_id")) {
+                $nodeItemPrev = NodeItem::find($request->input("node.prev_item_id"));
+                $nodeItemPrev->next_node_id = $node->id;
+                $nodeItemPrev->save();
+            }
             return redirect()->route("node.show", ["node" => $node->id]);
         } else {
             return redirect()->route("node.create")
@@ -104,8 +134,11 @@ class NodeController extends Controller
      */
     public function edit(Node $node)
     {
+        $nodeItemsCollection = Book::find($node->book_id)->nodeItems;
+
         return view("node/edit", [
             "node" => $node,
+            "nodeItemsCollection" => $nodeItemsCollection,
         ]);
     }
 

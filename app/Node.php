@@ -15,4 +15,14 @@ class Node extends BaseModel
 {
     protected $table = "nodes";
     protected $fillable = ["title", "text", "book_id"];
+
+    public function items()
+    {
+        return $this->hasMany('App\NodeItem');
+    }
+
+    public function book()
+    {
+        return $this->belongsTo("App\Book");
+    }
 }

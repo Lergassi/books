@@ -117,7 +117,9 @@ return [
     */
 
     'attributes' => [
-        "book" => trans("book.attributes"),
+        "book" => trans("app.book.attributes"),
+        "node" => trans("app.node.attributes"),
+        "nodeItem" => trans("app.nodeItem.attributes"),
     ],
 
 ];

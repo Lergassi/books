@@ -9,7 +9,7 @@
             {{method_field("DELETE")}}
             <a href="{{route("node.edit", ["node" => $node->id])}}" class="btn btn_primary">Редактировать</a>
             <input type="submit" name="delete" value="Удалить" class="btn btn_danger">
-            <a href="{{route("node.create", ["prev_node_id" => $node->id])}}" class="btn">Создать следующий узел</a>
+            <a href="{{route("nodeItem.create", ["node_id" => $node->id])}}" class="btn">Создать ответ</a>
         </form>
     </div>
     <table class="table">

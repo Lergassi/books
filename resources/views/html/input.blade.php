@@ -1,1 +1,1 @@
-<input type="text" name="{{$name}}" class="{{$class}}" value="{{$value}}">
+<input type="{{$type}}" name="{{$name}}" {{$attr}} value="{{$value}}">

@@ -34,6 +34,10 @@ class Helper
         if ($trans->has($key))
             return trans($key, $replace, $locale);
         else {
+            if ($trans->has("app." . $key)) {
+                return trans("app." . $key);
+            }
+
             $keys = explode(".", $key);
             $keyNew = $keys[count($keys) - 1];
 

@@ -6,24 +6,46 @@ namespace App;
 
 class Html
 {
-    public static function select(string $name, array $items, $value = null, array $params = [])
+    public static function select(string $name, $items, $value = null, array $params = [])
     {
         return view("html/select", [
             "items" => $items,
             "name" => $name,
             "value" => $value,
-            "class" => isset($params["class"]) ? $params["class"] : "",
+            "attr" => static::attrFormat($params),
         ]);
     }
 
     public static function input(string $name, $value = "", array $params = [])
     {
-//        __d($value);
-
         return view("html/input", [
+            "type" => "text",
             "name" => $name,
             "value" => $value,
-            "class" => isset($params["class"]) ? $params["class"] : "",
+            "attr" => static::attrFormat($params),
         ]);
+    }
+
+    public static function hidden(string $name, $value = "", array $params = [])
+    {
+        return view("html/input", [
+            "type" => "hidden",
+            "name" => $name,
+            "value" => $value,
+            "attr" => static::attrFormat($params),
+        ]);
+    }
+
+    public static function attrFormat(array $attributes)
+    {
+        $attr = "";
+        foreach ($attributes as $name => $value) {
+            if (is_bool($value))
+                $attr .= sprintf(" %s", $name);
+            else
+                $attr .= sprintf(' %s = %s', $name, $value);
+        }
+
+        return $attr;
     }
 }

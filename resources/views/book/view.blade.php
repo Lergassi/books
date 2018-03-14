@@ -9,6 +9,7 @@
             {{method_field("DELETE")}}
             <a href="{{route("book.edit", ["book" => $book->id])}}" class="btn btn_primary">Редактировать</a>
             <input type="submit" name="delete" value="Удалить" class="btn btn_danger">
+            <a href="{{route("node.create", ["book_id" => $book->id])}}" class="btn">Создать узел</a>
         </form>
     </div>
     <table class="table">

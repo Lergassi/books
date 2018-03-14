@@ -17,7 +17,8 @@
                     <td><a href="{{route("node.show", ["node" => $node->id])}}">{{$node->id}}</a></td>
                     <td>{{$node->title}}</td>
                     <td>{{$node->created_at}}</td>
-                    <td>{{$node->updated_at}}</td>
+                    <td>{{$node->text}}</td>
+                    <td><a href="{{route("book.show", ["book" => $node->book_id])}}">{{$node->book_id}}</a></td>
                 </tr>
             @endforeach
         </table>
