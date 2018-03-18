@@ -2,6 +2,7 @@
 .input-group {
   display: table;
   width: 100%;
+  margin-bottom: 15px;
 }
 .input-group .label,
 .input-group .input,
@@ -11,7 +12,6 @@
 .input-group .label {
   width: 30%;
   display: inline-block;
-  margin-bottom: 15px;
   box-sizing: border-box;
 }
 .input[type="text"] {

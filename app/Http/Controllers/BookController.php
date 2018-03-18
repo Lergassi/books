@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Book;
 use App\Helper;
+use App\NodeItem;
+use App\Read;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Gate;
@@ -29,7 +31,7 @@ class BookController extends Controller
     {
         $this->authorize('index', Book::class);
 
-        $pageSize = 10;
+        $pageSize = config("app.pageSize", 10);
         $books = Book::orderBy("created_at", "DESC")->paginate($pageSize);
 
         return view("book/index", [

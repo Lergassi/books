@@ -10,6 +10,12 @@ use Illuminate\Http\Response;
 
 class NodeItemController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware("auth");
+        $this->authorizeResource(NodeItem::class);
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -17,16 +23,19 @@ class NodeItemController extends Controller
      */
     public function index()
     {
-        $pageSize = 10;
+        $this->authorize('index', NodeItem::class);
+
+        $pageSize = config("app.pageSize", 10);
         $nodeItems = NodeItem::orderBy("created_at", "DESC")->paginate($pageSize);
 
-        return view("nodeItem/index", [
+        return view("node_item/index", [
             "nodeItems" => $nodeItems,
             "columns" => [
                 "id",
                 "text",
                 "created_at",
                 "node_id",
+                "next_node_id",
             ]
         ]);
     }
@@ -49,7 +58,7 @@ class NodeItemController extends Controller
             throw new \Exception("Для создания узла нужно указать node_id. Доступно со страниц просмотра модели.");
         }
 
-        return view("nodeItem/create", [
+        return view("node_item/create", [
             "nodeItem" => $nodeItem,
         ]);
     }
@@ -65,7 +74,7 @@ class NodeItemController extends Controller
         $validatedData = $this->createValidator($request);
 
         if ($validatedData->fails()) {
-            return redirect()->route("nodeItem.create", ["node_id" => $request->input("nodeItem.node_id")])
+            return redirect()->route("node_item.create", ["node_id" => $request->input("node_item.node_id")])
                 ->withErrors($validatedData)
                 ->withInput($request->input());
         }
@@ -74,9 +83,9 @@ class NodeItemController extends Controller
         $nodeItem->fill($request->get("nodeItem"));
 
         if ($nodeItem->save()) {
-            return redirect()->route("nodeItem.show", ["nodeItem" => $nodeItem->id]);
+            return redirect()->route("node.show", ["node" => $nodeItem->node_id]);
         } else {
-            return redirect()->route("nodeItem.create")
+            return redirect()->route("node_item.create")
                 ->withErrors([
                     "error" => "Ошибка при сохранении."
                 ])
@@ -92,7 +101,7 @@ class NodeItemController extends Controller
      */
     public function show(NodeItem $nodeItem)
     {
-        return view("nodeItem/view", [
+        return view("node_item/view", [
             "nodeItem" => $nodeItem,
         ]);
     }
@@ -105,7 +114,7 @@ class NodeItemController extends Controller
      */
     public function edit(NodeItem $nodeItem)
     {
-        return view("nodeItem/edit", [
+        return view("node_item/edit", [
             "nodeItem" => $nodeItem,
         ]);
     }
@@ -122,7 +131,8 @@ class NodeItemController extends Controller
         $validatedData = $this->createValidator($request);
 
         if ($validatedData->fails()) {
-            return redirect()->route("nodeItem.edit")
+
+            return redirect()->route("node_item.edit", ["nodeItem" => $nodeItem->id])
                 ->withErrors($validatedData)
                 ->withInput($request->input());
         }
@@ -130,9 +140,9 @@ class NodeItemController extends Controller
         $nodeItem->fill($request->get("nodeItem"));
 
         if ($nodeItem->save()) {
-            return redirect()->route("nodeItem.show", ["nodeItem" => $nodeItem->id]);
+            return redirect()->route("node_item.show", ["nodeItem" => $nodeItem->id]);
         } else {
-            return redirect()->route("nodeItem.edit")
+            return redirect()->route("node_item.edit")
                 ->withErrors([
                     "error" => "Ошибка при сохранении."
                 ])
@@ -150,7 +160,7 @@ class NodeItemController extends Controller
     {
         NodeItem::destroy($nodeItem->id);
 
-        return redirect("/nodeItem");
+        return redirect()->route("node_item.index");
     }
 
     public function createValidator(Request $request)

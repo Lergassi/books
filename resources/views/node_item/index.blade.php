@@ -13,10 +13,11 @@
             </thead>
             @foreach($nodeItems as $nodeItem)
                 <tr>
-                    <td><a href="{{route("nodeItem.show", ["nodeItem" => $nodeItem->id])}}">{{$nodeItem->id}}</a></td>
+                    <td><a href="{{route("node_item.show", ["nodeItem" => $nodeItem->id])}}">{{$nodeItem->id}}</a></td>
                     <td>{{$nodeItem->text}}</td>
                     <td>{{$nodeItem->created_at}}</td>
                     <td><a href="{{route("node.show", ["node" => $nodeItem->node_id])}}">{{$nodeItem->node_id}}</a></td>
+                    <td><a href="{{route("node.show", ["node" => $nodeItem->next_node_id])}}">{{$nodeItem->next_node_id}}</a></td>
                 </tr>
             @endforeach
         </table>

@@ -29,6 +29,10 @@
                     <label for="" class="label">Описание</label>
                     {!! \App\Html::input("book[description]", \App\Helper::hasOldAttribute($book, "book.description"), ["class" => "input"]) !!}
                 </div>
+                <div class="input-group">
+                    <label for="" class="label">Статус</label>
+                    {!! \App\Html::select("book[status]", \App\Book::getStatusLabels() , \App\Helper::hasOldAttribute($book, "book.status"), ["class" => "select"]) !!}
+                </div>
             </div>
             <div class="block-simple">
                 @yield("buttons")

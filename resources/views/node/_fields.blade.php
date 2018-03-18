@@ -15,4 +15,8 @@
     {!! App\Html::select("node[book_id]", \App\Book::getItems("title"), $node->book_id, ["class" => "select", "disabled" => true]) !!}
     {!! \App\Html::hidden("node[book_id]", $node->book_id) !!}
 </div>
+<div class="input-group">
+    <label for="" class="label">Первый узел</label>
+    {!! App\Html::checkbox("node[isStart]", "true", ["class" => "checkbox", "checked" => boolval(old("node.isStart"))]) !!}
+</div>
 @show

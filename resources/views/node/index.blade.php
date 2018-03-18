@@ -5,7 +5,6 @@
 @endphp
 @section("content")
     <div class="block-simple">
-        <div>filter</div>
         <table class="table">
             <thead>
                 @foreach($columns as $column)

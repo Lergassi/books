@@ -37,11 +37,11 @@ class Menu
             //TODO: временно
             [
                 "label" => "Ответы",
-                "url" => route("nodeItem.index"),
+                "url" => route("node_item.index"),
             ],
 //            [
 //                "label" => "Создать ответ",
-//                "url" => route("nodeItem.create"),
+//                "url" => route("node_item.create"),
 //            ],
         ];
 

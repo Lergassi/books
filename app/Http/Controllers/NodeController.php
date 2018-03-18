@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Book;
+use Illuminate\Support\Facades\DB;
 use Validator;
 use App\Node;
 use App\NodeItem;
@@ -25,7 +26,7 @@ class NodeController extends Controller
     {
         $this->authorize('index', Node::class);
 
-        $pageSize = 10;
+        $pageSize = config("app.pageSize", 10);
         $nodes = Node::orderBy("created_at", "DESC")->paginate($pageSize);
 
         return view("node/index", [
@@ -80,15 +81,16 @@ class NodeController extends Controller
     {
         $validatedData = $this->createValidator($request);
 
-        if ($validatedData->fails()) {
-            //TODO: Временное решение. Сделать интерфейс для создания новых узлов и узлов связанных с ответами.
-            $params = [];
-            if ($request->input("node.prev_item_id")) {
-                $params["nodeItem_id"] = $request->input("node.prev_item_id");
-            } elseif ($request->input("node.book_id")) {
-                $params["book_id"] = $request->input("node.book_id");
-            }
+        //TODO: Временное решение. Сделать интерфейс для создания новых узлов и узлов связанных с ответами.
+        //TODO: Добавить выбор узла. Несколько ответов могут ссылаться на один узел.
+        $params = [];
+        if ($request->input("node.prev_item_id")) {
+            $params["nodeItem_id"] = $request->input("node.prev_item_id");
+        } elseif ($request->input("node.book_id")) {
+            $params["book_id"] = $request->input("node.book_id");
+        }
 
+        if ($validatedData->fails()) {
             return redirect()->route("node.create", $params)
                 ->withErrors($validatedData)
                 ->withInput($request->input());
@@ -97,15 +99,28 @@ class NodeController extends Controller
         $node = new Node();
         $node->fill($request->get("node"));
 
-        if ($node->save()) {
+        DB::beginTransaction();
+        if ($success = $node->save()) {
             if ($request->input("node.prev_item_id")) {
                 $nodeItemPrev = NodeItem::find($request->input("node.prev_item_id"));
                 $nodeItemPrev->next_node_id = $node->id;
-                $nodeItemPrev->save();
+                $success = $nodeItemPrev->save() && $success;
             }
+
+            if ($request->input("node.isStart")) {
+                $success = Book::where("id", $node->book_id)
+                    ->update(["start_node_id" => $node->id]) && $success;
+            }
+        }
+
+        if ($success) {
+            DB::commit();
+
             return redirect()->route("node.show", ["node" => $node->id]);
         } else {
-            return redirect()->route("node.create")
+            DB::rollBack();
+
+            return redirect()->route("node.create", $params)
                 ->withErrors([
                     "error" => "Ошибка при сохранении."
                 ])

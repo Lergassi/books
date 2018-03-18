@@ -3,6 +3,7 @@
 namespace App;
 
 /**
+ * NOTE: Для route() использовать node_item. Во всех остальных случаях: nodeItem
  * @property int $id
  * @property int $created_at
  * @property int $updated_at
@@ -18,5 +19,10 @@ class NodeItem extends BaseModel
     public function node()
     {
         return $this->hasOne("App\Node", "id", "node_id");
+    }
+
+    public function nextNode()
+    {
+        return $this->hasOne("App\Node", "id", "next_node_id");
     }
 }

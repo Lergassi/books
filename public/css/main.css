@@ -114,6 +114,7 @@
 .input-group {
   display: table;
   width: 100%;
+  margin-bottom: 15px;
 }
 .input-group .label,
 .input-group .input,
@@ -123,7 +124,6 @@
 .input-group .label {
   width: 30%;
   display: inline-block;
-  margin-bottom: 15px;
   box-sizing: border-box;
 }
 .input[type="text"] {
@@ -140,6 +140,21 @@
   outline: none;
   border: 1px solid #E3E3E3;
   padding: 6px 8px;
+}
+.node-read {
+  border: 1px solid #E3E3E3;
+}
+.node-read__title,
+.node-read__text,
+.node-read__item {
+  padding: 15px;
+}
+.node-read__title {
+  background-color: #d5d5d5;
+}
+.node-read__item {
+  border-top: 1px solid #E3E3E3;
+  background-color: #eee;
 }
 * {
   margin: 0;

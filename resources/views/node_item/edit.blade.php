@@ -1,10 +1,10 @@
-@extends('nodeItem._form')
+@extends('node_item._form')
 
-@section("target", "/nodeItem/" . $nodeItem->id)
+@section("target", "/node_item/" . $nodeItem->id)
 @section("method", "put")
 
 @section("buttons")
-    <a href="{{route("nodeItem.show", ["nodeItem" => $nodeItem->id])}}" class="btn">Назад</a>
+    <a href="{{route("node_item.show", ["nodeItem" => $nodeItem->id])}}" class="btn">Назад</a>
     <input type="submit" name="update" value="Сохранить" class="btn btn_primary">
 @endsection
 
