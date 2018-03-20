@@ -22,7 +22,7 @@
   cursor: pointer;
 }
 .btn:hover {
-  background-color: #eee;
+  background-color: #d2d6de;
 }
 .btn_primary {
   background-color: #20a8d8;
@@ -70,10 +70,10 @@
   color: inherit !important;
 }
 .btn_link:hover {
-  background-color: #f3f3f3;
+  background-color: #d8dbe2;
 }
 .btn_link.active {
-  background-color: #eee;
+  background-color: #d2d6de;
 }
 .pagination-wrapper {
   margin-bottom: 15px;
@@ -105,10 +105,10 @@
   display: inline-block;
 }
 .pagination li.active {
-  background-color: #eee;
+  background-color: #d2d6de;
 }
 .pagination li:hover:not(.active) {
-  background-color: #f3f3f3;
+  background-color: #d8dbe2;
 }
 /*end pagination*/
 .input-group {
@@ -143,18 +143,34 @@
 }
 .node-read {
   border: 1px solid #E3E3E3;
-}
-.node-read__title,
-.node-read__text,
-.node-read__item {
-  padding: 15px;
+  border-radius: 4px;
+  color: #fff;
 }
 .node-read__title {
-  background-color: #d5d5d5;
+  padding: 15px 15px 2px;
+  font-size: 21px;
+}
+.node-read__text {
+  padding: 2px 15px 15px;
+}
+.node-read__title,
+.node-read__text {
+  background-color: #20a8d8;
 }
 .node-read__item {
   border-top: 1px solid #E3E3E3;
-  background-color: #eee;
+}
+.node-read__item a {
+  padding: 15px;
+  text-decoration: none;
+  display: inline-block;
+  width: 100%;
+  height: 100%;
+  box-sizing: border-box;
+}
+.node-read__item a:hover {
+  background-color: #d2d6de;
+  color: #000;
 }
 .col-3 {
   width: 33.33333333%;
@@ -283,7 +299,7 @@ a:hover {
 }
 .book-card__title,
 .book-card__description {
-  background-color: #f0f3f5;
+  background-color: #d2d6de;
 }
 .book-card__title {
   padding: 15px 15px 0;
@@ -303,7 +319,7 @@ a:hover {
 }
 .book-card__read {
   text-align: center;
-  background-color: #c2ced6;
+  background-color: #a6aebe;
 }
 .book-card__read a {
   text-decoration: none;

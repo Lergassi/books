@@ -29,9 +29,9 @@
   display: inline-block;
 }
 .pagination li.active {
-  background-color: #eee;
+  background-color: #d2d6de;
 }
 .pagination li:hover:not(.active) {
-  background-color: #f3f3f3;
+  background-color: #d8dbe2;
 }
 /*end pagination*/

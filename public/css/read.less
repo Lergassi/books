@@ -2,16 +2,30 @@
 
 .node-read {
   border: 1px solid @main-border-color;
+  border-radius: @main-border-radius;
+  color: @color-white;
 }
 
-.node-read__title,
-.node-read__text,
 .node-read__item {
-  padding: 15px;
+
 }
 
 .node-read__title {
-  background-color: darken(@color-gray, 10%);
+  padding: 15px 15px 2px;
+  font-size: @main-font-size + 8px;
+}
+
+.node-read__text {
+  padding: 2px 15px 15px;
+}
+
+.node-read__title,
+.node-read__text {
+  background-color: @color-primary;
+}
+
+.node-read__title {
+
 }
 
 .node-read__text {
@@ -24,5 +38,18 @@
 
 .node-read__item {
   border-top: 1px solid @main-border-color ;
-  background-color: @color-gray;
+
+  a {
+    padding: 15px;
+    text-decoration: none;
+    display: inline-block;
+    width: 100%;
+    height: 100%;
+    box-sizing: border-box;
+
+    &:hover {
+      background-color: @color-gray;
+      color: @main-color;
+    }
+  }
 }

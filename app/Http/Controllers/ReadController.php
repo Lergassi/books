@@ -33,7 +33,7 @@ class ReadController extends Controller
             return redirect()->route("read.info", ["read" => $read->getBook()->id]);
         }
 
-        return view("book/read", [
+        return view("read/read", [
             "read" => $read,
         ]);
     }

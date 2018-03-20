@@ -12,7 +12,7 @@
   cursor: pointer;
 }
 .btn:hover {
-  background-color: #eee;
+  background-color: #d2d6de;
 }
 .btn_primary {
   background-color: #20a8d8;
@@ -60,8 +60,8 @@
   color: inherit !important;
 }
 .btn_link:hover {
-  background-color: #f3f3f3;
+  background-color: #d8dbe2;
 }
 .btn_link.active {
-  background-color: #eee;
+  background-color: #d2d6de;
 }

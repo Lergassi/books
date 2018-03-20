@@ -1,16 +1,32 @@
 /*colors*/
 .node-read {
   border: 1px solid #E3E3E3;
-}
-.node-read__title,
-.node-read__text,
-.node-read__item {
-  padding: 15px;
+  border-radius: 4px;
+  color: #fff;
 }
 .node-read__title {
-  background-color: #d5d5d5;
+  padding: 15px 15px 2px;
+  font-size: 21px;
+}
+.node-read__text {
+  padding: 2px 15px 15px;
+}
+.node-read__title,
+.node-read__text {
+  background-color: #20a8d8;
 }
 .node-read__item {
   border-top: 1px solid #E3E3E3;
-  background-color: #eee;
+}
+.node-read__item a {
+  padding: 15px;
+  text-decoration: none;
+  display: inline-block;
+  width: 100%;
+  height: 100%;
+  box-sizing: border-box;
+}
+.node-read__item a:hover {
+  background-color: #d2d6de;
+  color: #000;
 }
