@@ -4,6 +4,8 @@
 /** @var \App\Read $read */
 @endphp
 
+@section("subTitle", $read->getBook()->title)
+
 @section('content')
     <div class="node-read">
         <div class="node-read__title">

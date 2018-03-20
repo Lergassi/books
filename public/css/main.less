@@ -4,6 +4,7 @@
 @import "pagination";
 @import "input";
 @import "read";
+@import "columns";
 
 * {
   margin: 0;
@@ -114,6 +115,10 @@ a {
   clear: both;
 }
 
+.clearfix-mod {
+  .clearfix-after();
+}
+
 .block-simple__line {
   margin: 15px 0;
   border-bottom: 1px solid @main-border-color;
@@ -123,8 +128,58 @@ a {
   font-weight: @bold;
   font-size: @main-font-size + 2px;
   margin-bottom: @main-margin-bottom;
+
+  &_center {
+    text-align: center;
+  }
 }
 
 .block-simple__content {
 
+}
+
+/*card*/
+@card-title-bg-color: #f0f3f5;
+
+.book-card {
+  border: 1px solid @main-border-color;
+  margin-bottom: @main-margin-bottom;
+  box-sizing: border-box;
+
+  & > .book-card__title {
+    font-size: 24px;
+  }
+}
+
+.book-card__title,
+.book-card__description {
+  background-color: @card-title-bg-color;
+}
+
+.book-card__title {
+  padding: 15px 15px 0;
+}
+
+.book-card__description {
+  max-height: 50px;
+  min-height: 50px;
+  padding: 15px 15px 15px;
+}
+
+.book-card__link {
+  .clearfix-after();
+  float: right;
+}
+
+.book-card__read {
+  text-align: center;
+  background-color: darken(@card-title-bg-color, 15%);
+
+  a {
+    text-decoration: none;
+    display: inline-block;
+    width: 100%;
+    height: 100%;
+    padding: 4px;
+  }
 }

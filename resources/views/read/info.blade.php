@@ -1,5 +1,7 @@
 @extends("layouts.main")
 
+@section("subTitle", $read->getBook()->title)
+
 @section("content")
     <div class="block-simple">
         <div class="block-simple">

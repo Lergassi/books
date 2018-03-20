@@ -3,11 +3,11 @@
 
 namespace App\Traits;
 
-
+/**
+ * @property int $status - Поле в таблице.
+ */
 trait StatusTrait
 {
-    private $status;
-
     public function setStatus(int $status)
     {
         $this->status = $status;

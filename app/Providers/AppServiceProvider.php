@@ -17,7 +17,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        View::share("titleSite", "Books");
+        View::share("titleSite", config("app.name"));
 
         //Создание модели Read для всех методов контроллера.
         Route::bind('read', function ($value) {

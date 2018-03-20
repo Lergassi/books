@@ -1,0 +1,7 @@
+/*colors*/
+.col-3 {
+  width: 33.33333333%;
+  float: left;
+  padding: 0 15px 15px;
+  box-sizing: border-box;
+}

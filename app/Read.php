@@ -14,9 +14,6 @@ class Read extends Model
 
     private $book;
     private $currentNode;
-//    private $status;
-
-    private $nameSession = "readObj_";
 
     const STATUS_READ = 10;
     const STATUS_END = 20;
@@ -36,7 +33,7 @@ class Read extends Model
     public function setBook(Book $book)
     {
         $this->book = $book;
-        $this->nameSession .= $book->id;
+//        $this->nameSession .= $book->id;
     }
 
     /**
@@ -97,7 +94,7 @@ class Read extends Model
      */
     public function saveRead()
     {
-        session([$this->nameSession => $this]);
+        session([static::getNameSession($this->getBook()) => $this]);
     }
 
     /**
@@ -121,8 +118,8 @@ class Read extends Model
      */
     public static function loadRead(int $book_id): ?Read
     {
-        if (!($read = session("readObj_" . $book_id))) {
-            $book = Book::find($book_id);
+        $book = Book::find($book_id);
+        if (!($read = session(static::getNameSession($book)))) {
             $read = Read::init($book);
         }
 
@@ -134,7 +131,7 @@ class Read extends Model
      */
     public function reset()
     {
-        session()->forget($this->nameSession);
+        session()->forget(static::getNameSession($this->getBook()));
     }
 
     /**
@@ -167,6 +164,16 @@ class Read extends Model
         ];
 
         return $status === null ? $labels : $labels[$status];
+    }
+
+    public static function getNameSession(Book $book)
+    {
+        return sprintf("readObj_%s", $book->id);
+    }
+
+    public static function hasObject(Book $book)
+    {
+        return session()->get(static::getNameSession($book)) !== null;
     }
 }
 

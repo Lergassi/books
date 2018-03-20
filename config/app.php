@@ -229,5 +229,5 @@ return [
     ],
 
     "pageSize" => 20,
-
+    "booksHomepageCount" => 20,
 ];

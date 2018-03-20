@@ -1,5 +1,5 @@
 @extends('layouts.main')
 
 @section('content')
-    <p>homepage</p>
+    @include("book._list", ["books" => $books])
 @endsection

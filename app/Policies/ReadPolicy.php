@@ -2,6 +2,7 @@
 
 namespace App\Policies;
 
+use App\Book;
 use App\Read;
 use App\User;
 use Illuminate\Auth\Access\HandlesAuthorization;
@@ -20,7 +21,7 @@ class ReadPolicy
         if ($this->isAdmin($user)) {
             return true;
         } else {
-            return $read->getBook()->isStatus(Read::STATUS_READ);
+            return $read->getBook()->isStatus(Book::STATUS_ACTIVE);
         }
     }
 }
